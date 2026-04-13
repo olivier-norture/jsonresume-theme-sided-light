@@ -1,0 +1,9 @@
+{
+  "name": "jsonresume-theme-norture",
+  "version": "0.1.0",
+  "main": "index.js",
+  "type": "commonjs",
+  "dependencies": {
+    "handlebars": "^4.7.8"
+  }
+}
