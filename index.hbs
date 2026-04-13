@@ -14,7 +14,7 @@
         }
         body { font-family: 'Inter', sans-serif; background-color: #ffffff; color: var(--slate); line-height: 1.5; -webkit-print-color-adjust: exact; }
         .main-container { max-width: 1050px; margin: 0 auto; background: #ffffff; }
-
+        
         .resume-body { display: flex; flex-wrap: nowrap; }
         .left-column { flex: 0 0 60%; max-width: 60%; padding: 40px; }
         .right-column { flex: 0 0 40%; max-width: 40%; background-color: var(--sidebar-bg); padding: 40px 30px; min-height: 100vh; }
@@ -29,53 +29,6 @@
         h2::after { content: ""; flex: 1; height: 1px; background: var(--border-color); }
         .right-column h2 { margin-top: 0; margin-bottom: 15px; }
 
-        /* Timeline */
-        .timeline {
-            position: relative;
-            padding-left: 30px;
-            margin-bottom: 20px;
-        }
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 15px;
-            top: 0;
-            bottom: 0;
-            width: 2px;
-            background-color: var(--border-color);
-        }
-        .timeline-item {
-            position: relative;
-            margin-bottom: 20px;
-        }
-        .timeline-dot {
-            position: absolute;
-            left: -33px;
-            top: 0;
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background-color: var(--primary-blue);
-            z-index: 1;
-        }
-        .timeline-dot::after {
-            content: '';
-            position: absolute;
-            width: 12px;
-            height: 12px;
-            top: 0;
-            left: 0;
-            border-radius: 50%;
-            background-color: var(--soft-blue);
-            z-index: -1;
-        }
-        .timeline-date {
-            font-size: 0.75rem;
-            color: #94a3b8;
-            font-weight: 600;
-            margin-bottom: 5px;
-        }
-
         .experience-item { margin-bottom: 25px; }
         .exp-header { display: flex; justify-content: space-between; align-items: baseline; }
         .company-name { font-weight: 700; color: #1e293b; font-size: 1rem; }
@@ -87,7 +40,7 @@
 
         .contact-item { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; font-size: 0.8rem; color: var(--slate); text-decoration: none !important; }
         .contact-item i { width: 24px; height: 24px; background: white; border-radius: 5px; display: flex; align-items: center; justify-content: center; color: var(--primary-blue); font-size: 0.75rem; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
-
+        
         .skill-tag { display: inline-block; background: white; color: #475569; padding: 4px 10px; border-radius: 6px; font-size: 0.7rem; font-weight: 600; margin: 0 4px 6px 0; border: 1px solid #e2e8f0; }
         .tag-blue { background: var(--soft-blue); border-color: transparent; color: #1e40af; }
         .edu-item { margin-bottom: 15px; }
@@ -120,7 +73,71 @@
             <p class="summary">{{resume.basics.summary}}</p>
         </div>
     </header>
-
+    
     <div class="resume-body">
         <main class="left-column">
-            <h2><i cla
+            <h2><i class="fas fa-briefcase me-2"></i>Expériences</h2>
+            {{#each resume.work}}
+            <div class="experience-item">
+                <div class="exp-header">
+                    <span class="company-name">{{name}}</span>
+                    <span class="exp-date">{{startDate}} – {{#if endDate}}{{endDate}}{{else}}Présent{{/if}}</span>
+                </div>
+                <div class="exp-role">{{position}}</div>
+                <div class="highlights">{{summary}}</div>
+                <ul class="highlights">
+                    {{#each highlights}}<li>{{this}}</li>{{/each}}
+                </ul>
+            </div>
+            {{/each}}
+        </main>
+
+        <aside class="right-column">
+            <h2>Contact</h2>
+            <div class="mb-4">
+                <div class="contact-item"><i class="fas fa-envelope"></i> {{resume.basics.email}}</div>
+                {{#each resume.basics.profiles}}
+                <a href="{{url}}" class="contact-item"><i class="fab fa-{{lowercase network}}"></i> {{username}}</a>
+                {{/each}}
+                <div class="contact-item"><i class="fas fa-map-marker-alt"></i> {{resume.basics.location.city}}</div>
+            </div>
+
+            <h2>Éducation</h2>
+            <div class="mb-4">
+                {{#each resume.education}}
+                <div class="edu-item">
+                    <span class="edu-name">{{institution}}</span>
+                    <span class="edu-desc">{{studyType}} {{area}} ({{endDate}})</span>
+                </div>
+                {{/each}}
+            </div>
+
+            <h2>Compétences</h2>
+            {{#each resume.skills}}
+            <div class="mb-3">
+                <small class="text-uppercase fw-bold d-block mb-1" style="font-size:0.65rem; color:#94a3b8">{{name}}</small>
+                {{#each keywords}}<span class="skill-tag tag-blue">{{this}}</span>{{/each}}
+            </div>
+            {{/each}}
+
+            <h2>Intérêts</h2>
+            {{#each resume.interests}}
+            <div class="mb-3">
+                <small class="text-uppercase fw-bold d-block mb-1" style="font-size:0.65rem; color:#94a3b8">{{name}}</small>
+                {{#each keywords}}<span class="skill-tag tag-blue">{{this}}</span>{{/each}}
+            </div>
+            {{/each}}
+
+            <h2>Langues</h2>
+            {{#each resume.languages}}
+            <div class="mb-3">
+                {{language}}: {{fluency}}
+            </div>
+            {{/each}}
+            
+
+        </aside>
+    </div>
+</div>
+</body>
+</html>
