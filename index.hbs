@@ -347,7 +347,14 @@
                     {{#each resume.basics.profiles}}
                     <a href="{{url}}" class="contact-item"><i class="fab fa-{{lowercase network}}"></i> {{username}}</a>
                     {{/each}}
-                    <div class="contact-item"><i class="fas fa-map-marker-alt"></i> {{resume.basics.location.city}}
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        {{resume.basics.location.city}}, {{resume.basics.location.region}}
+                        {{#if resume.basics.location.countryCode}}
+                        <img src="https://flagsapi.com/{{resume.basics.location.countryCode}}/flat/16.png"
+                            alt="{{resume.basics.location.countryCode}}"
+                            style="margin-left: 5px; vertical-align: middle; border-radius: 2px;">
+                        {{/if}}
                     </div>
                 </div>
 
