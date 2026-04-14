@@ -36,33 +36,33 @@
             max-width: 1050px;
             margin: 0 auto;
             background: #ffffff;
+            padding: 40px;
+        }
+
+        header {
+            display: flex;
+            align-items: center;
+            gap: 40px;
         }
 
         .resume-body {
             display: flex;
             flex-wrap: nowrap;
+            margin-top: 30px;
         }
 
         .left-column {
             flex: 0 0 60%;
             max-width: 60%;
-            padding: 40px;
+            padding-right: 30px;
         }
 
         .right-column {
             flex: 0 0 40%;
             max-width: 40%;
             background-color: var(--sidebar-bg);
-            padding: 40px 30px;
             min-height: 100vh;
-        }
-
-        header {
-            padding: 50px 40px;
-            border-bottom: 1px solid var(--border-color);
-            display: flex;
-            align-items: center;
-            gap: 40px;
+            padding: 0px 30px;
         }
 
         .photo {
@@ -90,9 +90,9 @@
 
         .summary {
             font-size: 0.85rem;
-            max-width: 600px;
             color: #64748b;
             margin-top: 10px;
+            padding-right: 30px;
         }
 
         h2 {
@@ -101,11 +101,10 @@
             letter-spacing: 2px;
             font-weight: 700;
             color: #94a3b8;
-            margin-bottom: 20px;
+            margin: 15px;
             display: flex;
             align-items: center;
             gap: 12px;
-            margin-top: 30px;
         }
 
         h2::after {
@@ -113,11 +112,6 @@
             flex: 1;
             height: 1px;
             background: var(--border-color);
-        }
-
-        .right-column h2 {
-            margin-top: 0;
-            margin-bottom: 15px;
         }
 
         .experience-item {
@@ -328,6 +322,7 @@
         </header>
 
         <div class="resume-body">
+
             <main class="left-column">
                 <h2><i class="fas fa-briefcase me-2"></i>Expériences</h2>
                 {{#each resume.work}}
