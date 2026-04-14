@@ -30,6 +30,7 @@
             color: var(--slate);
             line-height: 1.5;
             -webkit-print-color-adjust: exact;
+            text-align: justify;
         }
 
         .main-container {
@@ -362,8 +363,10 @@
                 <div class="mb-4">
                     {{#each resume.education}}
                     <div class="edu-item">
-                        <span class="edu-name">{{institution}}</span>
-                        <span class="edu-desc">{{studyType}} {{area}} ({{endDate}})</span>
+                        <span class="edu-name">{{studyType}} {{area}}</span>
+                        <span class="edu-desc">{{endDate}} - {{institution}}</span>
+                        <br />
+                        <span class="edu-desc">{{score}}</span>
                     </div>
                     {{/each}}
                 </div>
