@@ -50,6 +50,7 @@
             display: flex;
             flex-wrap: nowrap;
             margin-top: 30px;
+            align-items: stretch;
         }
 
         .left-column {
@@ -62,7 +63,6 @@
             flex: 0 0 40%;
             max-width: 40%;
             background-color: var(--sidebar-bg);
-            min-height: 100vh;
             padding: 0px 30px;
         }
 
@@ -113,10 +113,6 @@
             flex: 1;
             height: 1px;
             background: var(--border-color);
-        }
-
-        .experience-item {
-            margin-bottom: 25px;
         }
 
         .exp-header {
@@ -238,49 +234,42 @@
         }
 
         @media print {
-
-            /* 1. Réduction de la taille de police globale (environ -2px) */
             html {
                 font-size: 12px;
             }
 
             body {
-                margin: 0;
-                padding: 0;
-                line-height: 1.3;
+                font-family: 'Arial';
+                font-size: 1rem;
+                line-height: 1.2;
             }
 
-            /* 2. Forcer le header à rester en ligne */
             header {
                 display: flex !important;
                 flex-direction: row !important;
                 flex-wrap: nowrap !important;
                 align-items: center !important;
-                padding: 30px 40px !important;
-                /* On réduit un peu le padding pour gagner de la place */
+                padding: 10px 0px;
             }
 
-            /* Empêcher la photo de rétrécir ou de disparaître */
             .photo {
                 width: 100px !important;
-                /* Un peu plus petite pour l'impression */
                 height: 100px !important;
                 flex-shrink: 0 !important;
-                /* IMPORTANT : empêche l'image de s'écraser */
             }
 
-            /* Ajuster les marges du contenu textuel du header */
             header>div {
                 text-align: left !important;
+            }
+
+            .main-container {
+                padding: 10px;
             }
 
             h1 {
                 font-size: 1.8rem !important;
             }
 
-            /* Réduction du titre pour l'impression */
-
-            /* 3. Forcer le layout 2 colonnes */
             .resume-body {
                 display: flex !important;
                 flex-direction: row !important;
@@ -296,9 +285,9 @@
                 flex: 0 0 35% !important;
                 max-width: 35% !important;
                 background-color: var(--sidebar-bg) !important;
+                padding: 0 15px;
             }
 
-            /* Nettoyage pour éviter les sauts de page bizarres */
             .experience-item {
                 page-break-inside: avoid;
                 margin-bottom: 15px;
@@ -329,7 +318,9 @@
                 {{#each resume.work}}
                 <div class="experience-item">
                     <div class="exp-header">
-                        <span class="company-name">{{name}}</span>
+                        <span class="company-name">
+                            <h2>{{name}}</h2>
+                        </span>
                         <span class="exp-date">{{startDate}} – {{#if endDate}}{{endDate}}{{else}}Présent{{/if}}</span>
                     </div>
                     <div class="exp-role">{{position}}</div>
