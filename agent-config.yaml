@@ -1,0 +1,86 @@
+# ── Providers: API endpoints + auth ──
+providers:
+  openrouter:
+    api_url: "https://openrouter.ai/api/v1/chat/completions"
+    api_token_env: "OPENROUTER_API_KEY"
+  local_vllm:
+    api_url: "https://api.gpulnir.norture.fr/v1"
+    api_token_env: "LOCAL_VLLM_API_TOKEN"
+
+# ── LLMs: model paths referencing providers ──
+llms:
+  qwen-3-6-27b:
+    model_path: "hosted_vllm/qwen-3-6-27b"
+    provider: "${providers.local_vllm}"
+    default_temperature: 0.7
+    input_price: 0.35
+    output_price: 0.40
+    thinking_enabled: true
+    preserve_thinking: true
+    max_output_tokens: 65536
+    top_p: 0.95
+    top_k: 20
+    min_p: 0.0
+    presence_penalty: 0.75
+    repetition_penalty: 1.0
+    stop_sequences: []
+
+
+# ── Agents: role → model + prompt + skills + tools ──
+# Tools: terminal, file_editor, task_tracker (SDK tools)
+#        think, finish (built-in defaults)
+agents:
+  genius:
+    model: "${llms.qwen-3-6-27b}"
+    temperature: 1.0
+    prompt_file: ".agents/prompts/genius.md"
+    skills: ["call-agent"]
+    tools: ["think", "finish"]
+
+  dev:
+    model: "${llms.qwen-3-6-27b}"
+    prompt_file: ".agents/prompts/dev.md"
+    skills: []
+    tools: ["terminal", "file_editor", "task_tracker", "think", "finish"]
+
+  ctx:
+    model: "${llms.qwen-3-6-27b}"
+    prompt_file: ".agents/prompts/ctx.md"
+    skills: ["call-agent"]
+    tools: ["terminal", "file_editor", "task_tracker", "think", "finish"]
+
+  review:
+    model: "${llms.qwen-3-6-27b}"
+    prompt_file: ".agents/prompts/review.md"
+    skills: []
+    tools: ["think", "finish"]
+
+  issue:
+    model: "${llms.qwen-3-6-27b}"
+    prompt_file: ".agents/prompts/issue.md"
+    skills: ["call-agent"]
+    tools: ["think", "finish"]
+
+  issue-reviewer:
+    model: "${llms.qwen-3-6-27b}"
+    prompt_file: ".agents/prompts/issue-reviewer.md"
+    skills: []
+    tools: ["think", "finish"]
+
+  summarize:
+    model: "${llms.qwen-3-6-27b}"
+    prompt_file: ".agents/prompts/summarize.md"
+    skills: []
+    tools: ["think", "finish"]
+
+  debug:
+    model: "${llms.qwen-3-6-27b}"
+    prompt_file: ".agents/prompts/debug.md"
+    skills: []
+    tools: ["terminal", "file_editor", "think", "finish"]
+
+  po:
+    model: "${llms.qwen-3-6-27b}"
+    prompt_file: ".agents/prompts/po.md"
+    skills: []
+    tools: ["think", "finish"]
