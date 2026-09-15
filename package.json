@@ -1,8 +1,35 @@
 {
   "name": "jsonresume-theme-sided-light",
   "version": "0.1.0",
+  "description": "A light, two-column (sided) HTML theme for JSON Resume",
   "main": "index.js",
   "type": "commonjs",
+  "files": [
+    "index.js",
+    "index.hbs",
+    "package.json",
+    "README.md"
+  ],
+  "scripts": {
+    "test": "node test.js"
+  },
+  "keywords": [
+    "jsonresume",
+    "jsonresume-theme",
+    "theme",
+    "resume",
+    "cv"
+  ],
+  "author": "olivier-norture",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/olivier-norture/jsonresume-theme-sided-light.git"
+  },
+  "bugs": {
+    "url": "https://github.com/olivier-norture/jsonresume-theme-sided-light/issues"
+  },
+  "homepage": "https://github.com/olivier-norture/jsonresume-theme-sided-light#readme",
   "dependencies": {
     "handlebars": "^4.7.8"
   }
