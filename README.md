@@ -57,38 +57,22 @@ npm publish
 The package is scoped-free (`jsonresume-theme-sided-light`), so this publishes
 to the public registry immediately.
 
-### Future releases (automated)
+### Publishing (automated)
 
-For hands-off version bumps, add a GitHub Actions workflow at
-`.github/workflows/publish.yaml`:
+Every push to `master` is published to npm as `latest` by the workflow in
+`.github/workflows/publish.yml`. The pipeline runs the smoke test, auto-bumps
+the patch version (`npm version patch --no-git-tag-version`), then publishes.
 
-```yaml
-name: Publish to npm
+To enable it, add a repository secret `NPM_TOKEN` (a classic npm access token
+— `npm token create`, or a fine-grained token with **Bypass 2FA** enabled).
+Each release publishes a new patch version (e.g. `0.1.1`, `0.1.2`, …).
 
-on:
-  push:
-    tags:
-      - 'v*'
+You can also publish locally via the `Makefile`:
 
-jobs:
-  publish:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          registry-url: https://registry.npmjs.org
-      - run: npm ci
-      - run: npm test
-      - run: npm publish
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+```sh
+NPM_TOKEN=<your-token> make publish   # bumps the patch version, then publishes
+make test                             # run the smoke test
 ```
-
-Then create a repository secret `NPM_TOKEN` (a classic npm access token —
-`npm token create`) and release with `git tag v0.2.0 && git push origin
-v0.2.0` (bump `version` in `package.json` first).
 
 ## License
 
