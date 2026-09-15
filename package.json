@@ -1,6 +1,6 @@
 {
   "name": "jsonresume-theme-sided-light",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A light, two-column (sided) HTML theme for JSON Resume",
   "main": "index.js",
   "type": "commonjs",
