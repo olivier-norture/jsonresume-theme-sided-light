@@ -139,23 +139,40 @@
             font-size: 0.9rem;
         }
 
+        .experience-item {
+            margin-bottom: 28px;
+        }
+
         .highlights {
             list-style: none;
             padding-left: 0;
-            margin-top: 8px;
+            margin-top: 12px;
         }
 
         .exp-summary {
-            font-size: 1rem;
+            font-size: 0.9rem;
+            line-height: 1.55;
+            color: #64748b;
             margin-top: 8px;
+            padding-left: 12px;
+            border-left: 3px solid var(--soft-blue);
+            text-align: left;
         }
 
         .highlights li {
             font-size: 0.85rem;
-            margin-bottom: 4px;
+            line-height: 1.5;
+            margin-bottom: 9px;
             padding-left: 15px;
             position: relative;
+            text-align: left;
         }
+
+        .highlights li strong {
+            color: #1e293b;
+            font-weight: 600;
+        }
+
 
         .highlights li::before {
             content: "•";
@@ -345,7 +362,7 @@
                     <div class="exp-role">{{position}}</div>
                     <div class="exp-summary">{{summary}}</div>
                     <ul class="highlights">
-                        {{#each highlights}}<li>{{this}}</li>{{/each}}
+                        {{#each highlights}}<li>{{lead this}}</li>{{/each}}
                     </ul>
                 </div>
                 {{/each}}
