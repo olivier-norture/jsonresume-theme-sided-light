@@ -76,7 +76,7 @@
 
         h1 {
             font-weight: 700;
-            font-size: 2.2rem;
+            font-size: 2.8rem;
             color: #1e293b;
             margin: 0;
             letter-spacing: -0.5px;
@@ -85,12 +85,12 @@
         .job-title {
             color: var(--primary-blue);
             font-weight: 600;
-            font-size: 1.1rem;
+            font-size: 1.4rem;
             margin-top: 5px;
         }
 
         .summary {
-            font-size: 0.85rem;
+            font-size: 1.05rem;
             color: #64748b;
             margin-top: 10px;
             padding-right: 30px;
@@ -142,6 +142,11 @@
         .highlights {
             list-style: none;
             padding-left: 0;
+            margin-top: 8px;
+        }
+
+        .exp-summary {
+            font-size: 1rem;
             margin-top: 8px;
         }
 
@@ -263,11 +268,25 @@
             }
 
             .main-container {
-                padding: 10px;
+                padding: 10px 30px;
             }
 
             h1 {
-                font-size: 1.8rem !important;
+                font-size: 2.4rem !important;
+            }
+
+            .job-title {
+                font-size: 1.3rem !important;
+            }
+
+            .summary {
+                font-size: 1rem !important;
+                text-align: justify !important;
+                margin-bottom: 0;
+            }
+
+            .resume-body {
+                margin-top: 0 !important;
             }
 
             .resume-body {
@@ -324,7 +343,7 @@
                         <span class="exp-date">{{startDate}} – {{#if endDate}}{{endDate}}{{else}}Présent{{/if}}</span>
                     </div>
                     <div class="exp-role">{{position}}</div>
-                    <div class="highlights">{{summary}}</div>
+                    <div class="exp-summary">{{summary}}</div>
                     <ul class="highlights">
                         {{#each highlights}}<li>{{this}}</li>{{/each}}
                     </ul>
