@@ -238,6 +238,21 @@
             color: #64748b;
         }
 
+        /* Ne jamais couper un groupe de la colonne de droite entre deux pages */
+        .right-column .mb-3,
+        .right-column .mb-4>.edu-item,
+        .edu-item,
+        .contact-item {
+            break-inside: avoid;
+            page-break-inside: avoid;
+        }
+
+        /* Un titre de section reste avec son premier groupe */
+        .right-column h2 {
+            break-after: avoid;
+            page-break-after: avoid;
+        }
+
         @media (max-width: 768px) {
             .resume-body {
                 flex-direction: column;
